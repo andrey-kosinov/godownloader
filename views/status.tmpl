@@ -1,0 +1,37 @@
+
+<table class='table table-striped table-sm'>
+<thead class="thead-inverse">
+<tr>
+	<th>#</th>
+	<th>url</th>
+	<th>bitrate</th>
+	<th>resolution</th>
+	<th>progress</th>
+	<th>tries</th>
+	<th>status</th>
+	<th>spooled</th>
+	<th>done</th>
+	<th>error</th>
+</tr>
+</thead>
+{{range .}}
+<tr>
+	<td>{{ .ID }}</td>
+	<td>{{ .Url }}</td>
+	<td>{{ .Bitrate.Value }}</td>
+	<td>{{ .Resolution.Value }}</td>
+	<td style='width:200px;'>{{ if gt .Progress 0 }} <span class='badge badge-success' style="width:{{ .Progress }}%">{{ .Progress }}%</span> {{ else }} - {{ end }}</td>
+	<td>{{ .Tries }}</td>
+	<td>{{ if eq .Ok 1 }} <span class='badge badge-success'>Ok</span> {{ else }} <span class='badge badge-danger'>Err</span> {{ end }}</td>
+	<td>{{ .Created_at }}</td>
+	<td>{{ .Done_at.Value }}</td>
+	<td>{{ .Error.Value }}</td>
+</tr>
+{{end}}
+</table>
+
+<script type="text/javascript">
+	setTimeout(function(){
+	   window.location.reload(1);
+	}, 5000);
+</script>
